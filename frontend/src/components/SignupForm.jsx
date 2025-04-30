@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from React Icons
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +8,8 @@ const SignupForm = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +23,10 @@ const SignupForm = () => {
     e.preventDefault();
     console.log("Submitted Data:", formData);
     // Add your form submission logic here
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Toggle password visibility state
   };
 
   return (
@@ -58,12 +66,12 @@ const SignupForm = () => {
         </div>
 
         {/* Password Field */}
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Dynamically set input type
             name="password"
             id="password"
             value={formData.password}
@@ -71,6 +79,13 @@ const SignupForm = () => {
             required
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility} // Toggle password visibility on button click
+            className="absolute top-9 right-3 text-gray-500 hover:text-gray-700"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Conditionally render icons */}
+          </button>
         </div>
 
         {/* Submit Button */}
@@ -86,9 +101,11 @@ const SignupForm = () => {
       <div className="mt-4 text-center">
         <p className="text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <Link 
+          to = '/login'
+          className="text-blue-500 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>

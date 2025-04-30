@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from React Icons
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +22,10 @@ const LogIn = () => {
       console.log("Login successful!");
       // Add login logic, e.g., redirect to a dashboard
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Toggle password visibility
   };
 
   return (
@@ -44,7 +51,7 @@ const LogIn = () => {
         </div>
 
         {/* Password Field */}
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label
             htmlFor="password"
             className="block text-sm font-medium text-gray-700"
@@ -52,13 +59,20 @@ const LogIn = () => {
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Dynamic input type based on visibility state
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute top-9 right-3 text-gray-500 hover:text-gray-700"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Conditionally render icons */}
+          </button>
         </div>
 
         {/* Error Notification */}
@@ -75,9 +89,12 @@ const LogIn = () => {
       <div className="mt-4 text-center">
         <p className="text-sm text-gray-600">
           Don't have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <Link
+            to="/signup"
+            className="text-blue-500 hover:underline"
+          >
             SignUp here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

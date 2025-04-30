@@ -14,6 +14,8 @@ import ManageAccountPage from "./pages/ManageAccountPage";
 import AddUserPage from "./pages/AddUserPage";
 import ManageUserPage from "./pages/ManageUserPage";
 import NoServicePage from "./pages/NoServicePage";
+import SignUpPage from "./pages/SignUpPage";
+import LogInPage from "./pages/LogInPage";
 import RegisterProcedurePage from "./pages/RegisterProcedurePage";
 
 const router = createBrowserRouter(
@@ -27,6 +29,8 @@ const router = createBrowserRouter(
       <Route path="/add-user" element={<AddUserPage />} />
       <Route path="/manage-user" element={<ManageUserPage />} />
       <Route path="/register-procedure" element={<RegisterProcedurePage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/login" element={<LogInPage />} />
       <Route path="*" element={<NoServicePage />} />
     </Route>
   )
