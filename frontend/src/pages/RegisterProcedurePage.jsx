@@ -1,8 +1,11 @@
 import React from 'react'
+import RegisterProcedure from '../components/RegisterProcedure'
 
 const RegisterProcedurePage = () => {
   return (
-    <div>RegisterProcedurePage</div>
+    <>
+      <RegisterProcedure />
+    </>
   )
 }
 
