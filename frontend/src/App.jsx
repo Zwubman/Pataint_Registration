@@ -7,16 +7,15 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import HomePage from "./pages/HomePage";
-// import NavBar from "./components/NavBar";
-// import PictureSight from "./components/PictureSight";
-// import Footer from "./components/Footer";
-// import SignupForm from "./components/SignupForm";
-// import LogIn from "./components/LogIn";
+import DownloadPage from "./pages/DownloadPage";
+import ServicePage from "./pages/ServicePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
+      <Route path="/download-view" element={<DownloadPage />} />
+      <Route path="/service" element={<ServicePage />} />
     </Route>
   )
 );
