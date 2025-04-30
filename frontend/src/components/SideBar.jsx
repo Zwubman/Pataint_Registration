@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa"; // Import the hamburger menu icon from React Icons
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false); // State for sidebar visibility
@@ -27,40 +28,54 @@ const SideBar = () => {
         <div className="py-4 px-6">
           <ul className="space-y-4">
             <li>
-              <a href="#home" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link
+              to = '/'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link
+              to = '/my-account'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 My Account
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link 
+              to = '/register-procedure'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 Register Procedure
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link 
+              to = '/download-view'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 View/Download
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link 
+              to = '/add-user'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 Add User
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="#services" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
-                Magage User
-              </a>
+              <Link 
+              to = '/manage-user'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+                Manage User
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
+              <Link
+              to = '/contact'
+              className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
