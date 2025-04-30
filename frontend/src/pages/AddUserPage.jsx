@@ -1,8 +1,10 @@
 import React from 'react'
-
+import AddUser from '../components/AddUser'
 const AddUserPage = () => {
   return (
-    <div>AddUserPage</div>
+    <>
+      <AddUser />
+    </>
   )
 }
 

@@ -1,78 +1,81 @@
 import React from "react";
-import { FaBars } from "react-icons/fa"; // Import the hamburger menu icon from React Icons
+import { FaHome, FaUser, FaClipboardList, FaDownload, FaUsers, FaEnvelope } from "react-icons/fa"; // Import relevant icons
 import { Link } from "react-router-dom";
 
 const SideBar = ({ isOpen, closeSidebar }) => {
   return (
     <div className="relative">
       <div
-        className={`fixed top-16 left-0 h-[calc(100%-4rem)] w-64 bg-blue-300 text-black transform ${
+        className={`fixed top-16 left-0 h-[calc(100%-4rem)] w-64 bg-blue-500 text-white transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-500`}
+        } transition-transform duration-500 shadow-lg`}
       >
         <div className="py-4 px-6">
           <ul className="space-y-4">
+            {/* Home Link */}
             <li>
               <Link
                 to="/"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar when Home is clicked
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                Home
+                <FaHome className="text-xl" /> {/* Home Icon */}
+                <span>Home</span>
               </Link>
             </li>
+            {/* My Account Link */}
             <li>
               <Link
                 to="/my-account"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                My Account
+                <FaUser className="text-xl" /> {/* My Account Icon */}
+                <span>My Account</span>
               </Link>
             </li>
+            {/* Register Procedure Link */}
             <li>
               <Link
                 to="/register-procedure"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                Register Procedure
+                <FaClipboardList className="text-xl" /> {/* Register Procedure Icon */}
+                <span>Register Procedure</span>
               </Link>
             </li>
+            {/* View/Download Link */}
             <li>
               <Link
                 to="/download-view"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                View/Download
+                <FaDownload className="text-xl" /> {/* Download/View Icon */}
+                <span>View/Download</span>
               </Link>
             </li>
-            <li>
-              <Link
-                to="/add-user"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
-              >
-                Add User
-              </Link>
-            </li>
+            {/* Manage User Link */}
             <li>
               <Link
                 to="/manage-user"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                Manage User
+                <FaUsers className="text-xl" /> {/* Manage User Icon */}
+                <span>Manage User</span>
               </Link>
             </li>
+            {/* Contact Link */}
             <li>
               <Link
                 to="/contact"
-                className="hover:bg-gray-500 px-2 py-1 rounded-md block transition duration-300"
-                onClick={closeSidebar} // Close sidebar
+                className="flex items-center space-x-4 hover:bg-blue-600 px-4 py-2 rounded-md block transition duration-300"
+                onClick={closeSidebar}
               >
-                Contact
+                <FaEnvelope className="text-xl" /> {/* Contact Icon */}
+                <span>Contact</span>
               </Link>
             </li>
           </ul>
