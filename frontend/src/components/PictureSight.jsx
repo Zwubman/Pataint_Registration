@@ -14,25 +14,30 @@ const cards = [
     images: [picture1, picture2],
     title: "Surgical Excellence",
     description:
-      "Delivering precise and life-saving surgeries with utmost care and professionalism. Our surgical team is composed of highly skilled and dedicated professionals who utilize the latest techniques and technologies to ensure the best possible outcomes.",
+      "Delivering precise and life-saving surgeries with utmost care and professionalism." +
+      "Our surgical team is composed of highly skilled and dedicated professionals who " +
+      "utilize the latest techniques and technologies to ensure the best possible outcomes.",
   },
   {
     images: [picture3, picture4],
     title: "Innovative Techniques",
     description:
-      "Advancing healthcare through minimally invasive and modern medical procedures. These cutting-edge methods enable surgeries with precision, reducing recovery time and enhancing outcomes.",
+      "Advancing healthcare through minimally invasive and modern medical procedures." +
+      " These cutting-edge methods enable surgeries with precision, reducing recovery time and enhancing outcomes.",
   },
   {
     images: [picture5, picture6],
     title: "Patient-Centered Care",
     description:
-      "Treating every patient with compassion, dignity, and personalized attention. We emphasize clear communication and support throughout treatment and recovery.",
+      "Treating every patient with compassion, dignity, and personalized attention." +
+      " We emphasize clear communication and support throughout treatment and recovery.",
   },
   {
     images: [picture7, picture8],
     title: "State-of-the-Art Facilities",
     description:
-      "Empowering healing with cutting-edge equipment and a safe environment. Our facilities promote optimal healing with advanced technologies.",
+      "Empowering healing with cutting-edge equipment and a safe environment." +
+      " Our facilities promote optimal healing with advanced technologies.",
   },
 ];
 
@@ -62,7 +67,8 @@ const ImageSlider = ({ images }) => {
       </div>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-white bg-opacity-60 p-2 rounded-full hover:bg-opacity-90 sm:p-3"
+        className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-white 
+        bg-opacity-60 p-2 rounded-full hover:bg-opacity-90 sm:p-3"
       >
         <ChevronRight size={24} />
       </button>
@@ -73,7 +79,10 @@ const ImageSlider = ({ images }) => {
 const PictureSight = () => {
   return (
     <div className="bg-gray-100 py-12 px-4">
-      <h1 className="text-2xl font-extrabold text-center text-blue-900 mb-10 sm:text-3xl md:text-4xl py-5">
+      <h1
+        className="text-2xl font-extrabold text-center 
+      text-blue-900 mb-10 sm:text-3xl md:text-4xl py-5"
+      >
         Promoting Excellence in Medicine
       </h1>
 

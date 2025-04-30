@@ -48,7 +48,8 @@ const AddUser = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -64,7 +65,8 @@ const AddUser = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
             <button
               type="button"
@@ -79,7 +81,8 @@ const AddUser = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full py-3 px-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
+              className="w-full py-3 px-6 bg-blue-600 text-white 
+              rounded-md hover:bg-blue-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
             >
               <FaUserPlus className="text-xl" />
               <span>Add User</span>

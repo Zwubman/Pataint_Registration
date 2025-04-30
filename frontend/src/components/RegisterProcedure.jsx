@@ -52,7 +52,8 @@ const RegisterProcedure = () => {
               id="No"
               value={formData.No}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -70,7 +71,8 @@ const RegisterProcedure = () => {
               id="Name"
               value={formData.Name}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -88,7 +90,8 @@ const RegisterProcedure = () => {
               id="MRN"
               value={formData.MRN}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -106,7 +109,8 @@ const RegisterProcedure = () => {
               id="Age"
               value={formData.Age}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -123,7 +127,8 @@ const RegisterProcedure = () => {
               id="Sex"
               value={formData.Sex}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             >
               <option value="">Select</option>
               <option value="Male">Male</option>
@@ -144,7 +149,8 @@ const RegisterProcedure = () => {
               id="ClinicalPresentation"
               value={formData.ClinicalPresentation}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             ></textarea>
           </div>
 
@@ -161,7 +167,8 @@ const RegisterProcedure = () => {
               id="Diagnosis"
               value={formData.Diagnosis}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             ></textarea>
           </div>
 
@@ -178,7 +185,8 @@ const RegisterProcedure = () => {
               id="ImagingFinding"
               value={formData.ImagingFinding}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             ></textarea>
           </div>
 
@@ -196,7 +204,8 @@ const RegisterProcedure = () => {
               id="Surgeon"
               value={formData.Surgeon}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -214,7 +223,8 @@ const RegisterProcedure = () => {
               id="Asistant"
               value={formData.Asistant}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -232,7 +242,8 @@ const RegisterProcedure = () => {
               id="Ansthesia"
               value={formData.Ansthesia}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -250,7 +261,8 @@ const RegisterProcedure = () => {
               id="Nurse"
               value={formData.Nurse}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -268,7 +280,8 @@ const RegisterProcedure = () => {
               id="DurationOfSurgery"
               value={formData.DurationOfSurgery}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -286,7 +299,8 @@ const RegisterProcedure = () => {
               id="DurationOfAnsthesia"
               value={formData.DurationOfAnsthesia}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -303,7 +317,8 @@ const RegisterProcedure = () => {
               id="OutcomeOfPatient"
               value={formData.OutcomeOfPatient}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             ></textarea>
           </div>
 
@@ -320,7 +335,8 @@ const RegisterProcedure = () => {
               id="Remark"
               value={formData.Remark}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             ></textarea>
           </div>
         </div>
@@ -329,7 +345,8 @@ const RegisterProcedure = () => {
         <div className="mt-6">
           <button
             type="submit"
-            className="w-full sm:w-1/3 py-3 px-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
+            className="w-full sm:w-1/3 py-3 px-6 bg-blue-600 text-white 
+            rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
           >
             Register Procedure
           </button>

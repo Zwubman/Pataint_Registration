@@ -3,7 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-blue-800 text-white py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex 
+      flex-col md:flex-row justify-between items-center">
         {/* Left Section */}
         <div className="text-center md:text-left mb-6 md:mb-0">
           <h4 className="text-lg font-bold mb-2">

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { FaTrash } from "react-icons/fa"; // Import the delete icon
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+import { FaTrash } from "react-icons/fa"; 
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const DeleteUser = () => {
-  const [email, setEmail] = useState(""); // State for email input
+  const [email, setEmail] = useState(""); 
 
   // Function to handle email input change
   const handleChange = (e) => {
@@ -45,7 +45,8 @@ const DeleteUser = () => {
               value={email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-red-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-red-500"
             />
           </div>
 
@@ -53,7 +54,8 @@ const DeleteUser = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full py-3 px-6 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
+              className="w-full py-3 px-6 bg-red-600 text-white rounded-md
+               hover:bg-red-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
             >
               <FaTrash className="text-xl" /> {/* Delete Icon */}
               <span>Delete User</span>

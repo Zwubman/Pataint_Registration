@@ -13,7 +13,8 @@ const MyAccount = () => {
           {/* Change Password Button */}
           <Link
             to="/change-password"
-            className="block w-full py-3 px-6 bg-blue-600 text-white text-center rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
+            className="block w-full py-3 px-6 bg-blue-600 text-white text-center 
+            rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
           >
             Change Password
           </Link>
@@ -21,7 +22,8 @@ const MyAccount = () => {
           {/* Bind with Phone Button */}
           <Link
             to="/add-phone"
-            className="block w-full py-3 px-6 bg-green-600 text-white text-center rounded-md hover:bg-green-700 transition duration-200 font-semibold"
+            className="block w-full py-3 px-6 bg-green-600 text-white text-center 
+            rounded-md hover:bg-green-700 transition duration-200 font-semibold"
           >
             Bind with Phone
           </Link>
@@ -29,7 +31,8 @@ const MyAccount = () => {
           {/* Update Email Button */}
           <Link
             to="/update-email"
-            className="block w-full py-3 px-6 bg-yellow-500 text-white text-center rounded-md hover:bg-yellow-600 transition duration-200 font-semibold"
+            className="block w-full py-3 px-6 bg-yellow-500 text-white text-center 
+            rounded-md hover:bg-yellow-600 transition duration-200 font-semibold"
           >
             Update Email
           </Link>
@@ -37,7 +40,8 @@ const MyAccount = () => {
           {/* Logout Button */}
           <button
             onClick={() => console.log("Logout clicked")} // Replace with actual logout logic
-            className="block w-full py-3 px-6 bg-red-600 text-white text-center rounded-md hover:bg-red-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
+            className="block w-full py-3 px-6 bg-red-600 text-white text-center rounded-md 
+            hover:bg-red-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
           >
             <FaSignOutAlt className="text-xl" />
             <span>Logout</span>

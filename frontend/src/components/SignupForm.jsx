@@ -62,7 +62,8 @@ const SignupForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
 
@@ -78,7 +79,8 @@ const SignupForm = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 
+              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
             <button
               type="button"
@@ -92,7 +94,8 @@ const SignupForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+            className="w-full py-2 px-4 bg-blue-600 text-white 
+            rounded-md hover:bg-blue-700 transition duration-200"
           >
             Signup
           </button>
