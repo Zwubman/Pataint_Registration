@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom"; // Import useLocation for detecting active paths
-import { FaHome, FaServicestack, FaBars, FaSignInAlt } from "react-icons/fa"; // Import icons from React Icons
+import {
+  FaHome,
+  FaServicestack,
+  FaBars,
+  FaSignInAlt,
+  FaEnvelope,
+} from "react-icons/fa"; // Import icons from React Icons
 import SideBar from "./SideBar";
 
 const NavBar = () => {
@@ -26,9 +32,9 @@ const NavBar = () => {
       <div className="flex items-center justify-between w-full">
         {/* Left Links */}
         <div className="flex items-center">
-          {/* Sidebar Toggle Button */}
+          {/* Sidebar Toggle Button (Menu Icon) */}
           <button
-            className="text-white text-sm sm:text-lg font-semibold py-2 px-3 sm:px-6 rounded-full hover:bg-black transition duration-300 flex items-center space-x-2"
+            className="text-white hover:bg-black text-sm sm:text-lg font-semibold py-2 px-1 sm:px-6 rounded-full transition duration-300 flex items-center" // Removed hover:bg-black
             onClick={toggleSidebar}
           >
             <FaBars size={24} />
@@ -39,7 +45,7 @@ const NavBar = () => {
             to="/"
             className={`${
               isActive("/") ? "bg-black" : "bg-blue-600"
-            } text-white text-sm sm:text-lg font-semibold py-2 px-3 sm:px-6 rounded-full hover:bg-black transition duration-300 flex items-center space-x-2`}
+            } text-white text-sm sm:text-lg font-semibold py-2 px-1 sm:px-6 rounded-full hover:bg-black transition duration-300 flex items-center `}
             onClick={closeSidebar}
           >
             <FaHome className="w-4 h-4 sm:w-6 sm:h-6" />
@@ -56,6 +62,18 @@ const NavBar = () => {
           >
             <FaServicestack className="w-4 h-4 sm:w-6 sm:h-6" />
             <span>Service</span>
+          </Link>
+
+          {/* Contact Link */}
+          <Link
+            to="/contact"
+            className={`${
+              isActive("/contact") ? "bg-black" : "bg-blue-600"
+            } text-white text-sm sm:text-lg font-semibold py-2 px-3 sm:px-6 rounded-full hover:bg-black transition duration-300 flex items-center space-x-2`}
+            onClick={closeSidebar}
+          >
+            <FaEnvelope className="text-xl" />
+            <span>Contact</span>
           </Link>
         </div>
 
