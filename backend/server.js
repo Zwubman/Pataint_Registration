@@ -14,9 +14,9 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-app.use('/api/v1', authRoute);
-app.use('/api/v2', userRoute);
-app.use('/api/v3', pataintRoute);
+app.use('/auth', authRoute);
+app.use('/user', userRoute);
+app.use('/pataint', pataintRoute);
 
 
 const port = process.env.PORT;
