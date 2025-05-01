@@ -1,18 +1,25 @@
 import mongoose from "mongoose";
 import express from "express";
-import { verifyToken } from "../Middlwares/authMiddleware.js";
+import {
+  verifyToken,
+  checkSuperAdminRole,
+} from "../Middlwares/authMiddleware.js";
 import {
   registerUser,
   deleteUser,
   changePassword,
-  getAllUsers
+  getAllUsers,
+  signIn,
+  signOut,
 } from "../Controllers/userController.js";
 
 const userRouter = express.Router();
 
-userRouter.post("/register", verifyToken, registerUser);
-userRouter.delete("/delete", verifyToken, deleteUser);
-userRouter.post("/changePassword", verifyToken, changePassword);
-userRouter.get("/getAll", verifyToken, getAllUsers);
+userRouter.post("/register", verifyToken, checkSuperAdminRole, registerUser);
+userRouter.post("/signin", signIn);
+userRouter.post("/signout", verifyToken, signOut);
+userRouter.delete("/delete-user", verifyToken, checkSuperAdminRole, deleteUser);
+userRouter.post("/change-password", verifyToken, changePassword);
+userRouter.get("/get-all", verifyToken, getAllUsers);
 
 export default userRouter;

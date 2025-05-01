@@ -21,11 +21,6 @@ const UsersSchema = new mongoose.Schema({
     default: "Admin",
     allowNull: false,
   },
-  isDeleted: {
-    type: Boolean,
-    allowNull: true,
-    default: false,
-  },
   sessionToken: {
     type: String,
     allowNull: true,
@@ -33,12 +28,11 @@ const UsersSchema = new mongoose.Schema({
   },
   deletedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    allowNull: true,
-    references: {
-      model: "Users",
-      key: "_id",
-    },
-    default: null
+    ref: "User",
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 

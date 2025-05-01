@@ -3,7 +3,6 @@ import express from "express";
 import "./Connections/Conn.js";
 import Pataint from "./Models/pataintModel.js";
 import User from "./Models/userModel.js";
-import authRoute from "./Routes/authRoute.js"
 import pataintRoute from "./Routes/pataintRoute.js";
 import userRoute from "./Routes/userRoute.js";
 import cors from "cors";
@@ -14,7 +13,6 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/pataint', pataintRoute);
 

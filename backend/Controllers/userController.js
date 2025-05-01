@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 import express from "express";
 import User from "../Models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 //register user
 export const registerUser = async (req, res) => {
@@ -29,20 +33,109 @@ export const registerUser = async (req, res) => {
   }
 };
 
-//Delete user by email
+// Normalize Gmail emails by removing dots from the local part
+function normalizeEmail(email) {
+  const [local, domain] = email.toLowerCase().split("@");
+  if (domain === "gmail.com") {
+    return local.replace(/\./g, "") + "@gmail.com";
+  }
+  return local + "@" + domain;
+}
+
+// This function handles user sign-in by verifying credentials and generating tokens
+export const signIn = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Normalize both entered email and stored email
+    const normalizedEnteredEmail = normalizeEmail(email);
+    const normalizedStoredEmail = normalizeEmail(user.email);
+
+    // Compare the normalized emails
+    if (normalizedEnteredEmail !== normalizedStoredEmail) {
+      return res.status(401).json({ error: "Incorrect email or password." });
+    }
+
+    // Password check
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Incorrect password or email." });
+    }
+
+    // Generate access and refresh tokens
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "10h" }
+    );
+
+    const refreshToken = jwt.sign(
+      { email: user.email },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "30d" }
+    );
+
+    // Set cookies for the tokens
+    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("refreshToken", refreshToken, { httpOnly: true });
+
+    // Send response with tokens
+    res.json({ message: "Login successful", accessToken, refreshToken });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Cannot log in" });
+  }
+};
+
+// This function handles user sign-out by clearing the session token and cookies
+export const signOut = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email });
+
+    if (user) {
+      user.sessionToken = null;
+      await user.save();
+    }
+
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    return res.json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({ error: "Cannot logout" });
+  }
+};
+
 export const deleteUser = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user.id; 
     const { email } = req.body;
     const user = await User.findOne({ email });
 
     if (!user || user.isDeleted === true) {
-      return res.status(404).json({ error: "User not found" });
+      return res
+        .status(404)
+        .json({ error: "User not found or already deleted" });
     }
 
-    user.deletedBy = userId;
+
+
     user.isDeleted = true;
+    user.deletedBy = userId;
+
+
     await user.save();
+
 
     return res
       .status(200)
@@ -71,11 +164,9 @@ export const changePassword = async (req, res) => {
 
     const isSamePassword = await bcrypt.compare(newPassword, user.password);
     if (isSamePassword) {
-      return res
-        .status(400)
-        .json({
-          error: "New password cannot be the same as the current password",
-        });
+      return res.status(400).json({
+        error: "New password cannot be the same as the current password",
+      });
     }
 
     if (newPassword !== confirmNewPassword) {
@@ -85,8 +176,8 @@ export const changePassword = async (req, res) => {
     }
 
     // const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-    user.password = newPassword;
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
     await user.save();
 
     return res.status(200).json({ message: "Password updated successfully" });
@@ -102,6 +193,7 @@ export const getAllUsers = async (req, res) => {
     const users = await User.find(
       {
         isDeleted: false,
+        email: { $ne: req.user.email },
       },
       "email role"
     );
