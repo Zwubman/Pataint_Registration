@@ -15,6 +15,9 @@ const UsersSchema = new mongoose.Schema({
     allowNull: false,
     unique: false,
   },
+  Phone: {
+    type: String
+  },
   role: {
     type: String,
     emum: ["Admin", "SuperAdmin"],

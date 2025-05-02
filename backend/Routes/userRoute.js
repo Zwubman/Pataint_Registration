@@ -9,6 +9,7 @@ import {
   deleteUser,
   changePassword,
   getAllUsers,
+  addPhone,
   signIn,
   signOut,
 } from "../Controllers/userController.js";
@@ -21,5 +22,6 @@ userRouter.post("/signout", verifyToken, signOut);
 userRouter.delete("/delete-user", verifyToken, checkSuperAdminRole, deleteUser);
 userRouter.post("/change-password", verifyToken, changePassword);
 userRouter.get("/get-all", verifyToken, getAllUsers);
+userRouter.post("/add-phone", verifyToken, addPhone);
 
 export default userRouter;
