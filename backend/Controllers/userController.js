@@ -208,16 +208,54 @@ export const addPhone = async (req, res) => {
     const userId = req.user.id;
 
     const user = await User.findOne(userId);
-    if(!user){
-      res.status(404).json({message: "User not found."})
+    if (!user) {
+      res.status(404).json({ message: "User not found." });
     }
 
     user.phone = phone;
     await user.save();
 
-    res.status(200).json({message: "User successfully bind phone number to the account."})
+    res
+      .status(200)
+      .json({ message: "User successfully bind phone number to the account." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Failed to add phone number.", error });
+  }
+};
+
+// Update email
+export const updateEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const userId = req.user.id;
+
+    // const user = await User.findOne(userId);
+    // if(!user){
+    //   res.status(404).json({message: "User not found."})
+    // }
+
+    const updatedEmail = await User.findOneAndUpdate(
+      {
+        userId,
+      },
+      {
+        $set: {
+          email,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!updatedEmail) {
+      res.status(404).json({ message: "Email not updated or user not found." });
+    }
+
+    res.status(200).json({ message: "Email successfully updated." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to update email." });
   }
 };

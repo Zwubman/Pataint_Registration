@@ -13,9 +13,8 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-app.use('/user', userRoute);
-app.use('/pataint', pataintRoute);
-
+app.use("/user", userRoute);
+app.use("/pataint", pataintRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => {

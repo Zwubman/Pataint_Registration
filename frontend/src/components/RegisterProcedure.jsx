@@ -345,7 +345,7 @@ const RegisterProcedure = () => {
         <div className="mt-6">
           <button
             type="submit"
-            className="w-full sm:w-1/3 py-3 px-6 bg-blue-600 text-white 
+            className="w-full sm:w-1/2 py-3 px-6 bg-blue-600 text-white 
             rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
           >
             Register Procedure
