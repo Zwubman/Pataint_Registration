@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify"; // Toast notifications
 import "react-toastify/dist/ReactToastify.css"; // Toastify CSS
+import { bindPhoneNumber } from "../services/api";
 
 const AddPhone = () => {
   const [countryCode, setCountryCode] = useState("+251"); // Default value set to Ethiopia's country code
   const [phoneNumber, setPhoneNumber] = useState(""); // Phone number input
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const validatePhoneNumber = (number) => {
+    // Remove any spaces or special characters
+    const cleanNumber = number.replace(/[^\d]/g, "");
+
+    // Basic validation for Ethiopian numbers (9 digits after country code)
+    if (countryCode === "+251" && cleanNumber.length !== 9) {
+      return false;
+    }
+
+    // General validation for other countries (minimum 7 digits)
+    return cleanNumber.length >= 7;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate phone number and country selection
@@ -20,9 +35,28 @@ const AddPhone = () => {
       return;
     }
 
-    // You can replace this with an API call or logic to save the phone number
-    console.log(`Phone added: ${countryCode} ${phoneNumber}`);
-    toast.success("Phone number added successfully!");
+    if (!validatePhoneNumber(phoneNumber)) {
+      toast.error("Please enter a valid phone number!");
+      return;
+    }
+
+    // Format the phone number with country code
+    const formattedPhone = `${countryCode}${phoneNumber.replace(/[^\d]/g, "")}`;
+
+    try {
+      setIsLoading(true);
+      await bindPhoneNumber({ phone: formattedPhone });
+      toast.success("Phone number added successfully!");
+      setPhoneNumber(""); // Reset form
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to add phone number";
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const countries = [
@@ -55,6 +89,7 @@ const AddPhone = () => {
               onChange={(e) => setCountryCode(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 
               rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              disabled={isLoading}
             >
               <option value="" disabled>
                 Select country
@@ -80,19 +115,29 @@ const AddPhone = () => {
               id="phoneNumber"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="9XXXXXXXX"
+              placeholder={
+                countryCode === "+251" ? "9XXXXXXXX" : "Enter phone number"
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 
               rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              disabled={isLoading}
             />
+            {countryCode === "+251" && (
+              <p className="mt-1 text-sm text-gray-500">
+                For Ethiopian numbers, enter 9 digits without the country code
+              </p>
+            )}
           </div>
 
           {/* Add Phone Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 
-            rounded-md hover:bg-blue-700 transition duration-200"
+            className={`w-full ${
+              isLoading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+            } text-white py-2 px-4 rounded-md transition duration-200`}
+            disabled={isLoading}
           >
-            Add Phone
+            {isLoading ? "Adding..." : "Add Phone"}
           </button>
         </form>
 

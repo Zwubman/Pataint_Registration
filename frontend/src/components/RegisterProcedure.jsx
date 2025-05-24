@@ -1,6 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addPatient,
+  selectPatientError,
+  setError,
+} from "../redux/features/patientSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterProcedure = () => {
+  const dispatch = useDispatch();
+  const error = useSelector(selectPatientError);
+
   const [formData, setFormData] = useState({
     No: "",
     Name: "",
@@ -25,10 +36,59 @@ const RegisterProcedure = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-    // Add form submission logic here
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
+
+      const response = await fetch("http://localhost:8080/pataint/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch(addPatient(data));
+        toast.success("Patient registered successfully!");
+        // Reset form after successful submission
+        setFormData({
+          No: "",
+          Name: "",
+          MRN: "",
+          Age: "",
+          Sex: "",
+          ClinicalPresentation: "",
+          Diagnosis: "",
+          ImagingFinding: "",
+          Surgeon: "",
+          Asistant: "",
+          Ansthesia: "",
+          Nurse: "",
+          DurationOfSurgery: "",
+          DurationOfAnsthesia: "",
+          OutcomeOfPatient: "",
+          Remark: "",
+        });
+      } else {
+        const errorMessage = data.error || "Failed to register patient";
+        dispatch(setError(errorMessage));
+        toast.error(errorMessage);
+      }
+    } catch (error) {
+      const errorMessage = "Network error occurred";
+      dispatch(setError(errorMessage));
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -36,6 +96,9 @@ const RegisterProcedure = () => {
       <h2 className="text-3xl font-bold text-center mb-8 text-blue-600">
         Register Patient Procedure
       </h2>
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="space-y-6">
           {/* No */}
@@ -54,6 +117,7 @@ const RegisterProcedure = () => {
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 
               rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              required
             />
           </div>
 
@@ -352,6 +416,7 @@ const RegisterProcedure = () => {
           </button>
         </div>
       </form>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

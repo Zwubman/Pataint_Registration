@@ -15,7 +15,7 @@ const UsersSchema = new mongoose.Schema({
     allowNull: false,
     unique: false,
   },
-  Phone: {
+  phone: {
     type: String
   },
   role: {
@@ -36,6 +36,10 @@ const UsersSchema = new mongoose.Schema({
   isDeleted: {
     type: Boolean,
     default: false,
+  },
+  registerdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

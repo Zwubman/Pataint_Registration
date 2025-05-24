@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa"; // Import Logout Icon
 
-const MyAccount = () => {
+const MyAccount = ({ closeSidebar }) => {
   return (
     <div className="flex flex-col items-center justify-center h-screen px-4 bg-gray-100">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
@@ -15,6 +14,7 @@ const MyAccount = () => {
             to="/change-password"
             className="block w-full py-3 px-6 bg-blue-600 text-white text-center 
             rounded-md hover:bg-blue-700 transition duration-200 font-semibold"
+            onClick={closeSidebar}
           >
             Change Password
           </Link>
@@ -24,6 +24,7 @@ const MyAccount = () => {
             to="/add-phone"
             className="block w-full py-3 px-6 bg-green-600 text-white text-center 
             rounded-md hover:bg-green-700 transition duration-200 font-semibold"
+            onClick={closeSidebar}
           >
             Bind with Phone
           </Link>
@@ -33,19 +34,10 @@ const MyAccount = () => {
             to="/update-email"
             className="block w-full py-3 px-6 bg-yellow-500 text-white text-center 
             rounded-md hover:bg-yellow-600 transition duration-200 font-semibold"
+            onClick={closeSidebar}
           >
             Update Email
           </Link>
-
-          {/* Logout Button */}
-          <button
-            onClick={() => console.log("Logout clicked")} // Replace with actual logout logic
-            className="block w-full py-3 px-6 bg-red-600 text-white text-center rounded-md 
-            hover:bg-red-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
-          >
-            <FaSignOutAlt className="text-xl" />
-            <span>Logout</span>
-          </button>
         </div>
       </div>
     </div>

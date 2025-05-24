@@ -72,6 +72,7 @@ export const signIn = async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: user._id,
+        name: user.name,
         email: user.email,
         role: user.role,
       },
@@ -97,7 +98,7 @@ export const signIn = async (req, res) => {
   }
 };
 
-// This function handles user sign-out by clearing the session token and cookies
+// This function handles user sign-out
 export const signOut = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.user.email });
@@ -191,7 +192,7 @@ export const getAllUsers = async (req, res) => {
         isDeleted: false,
         email: { $ne: req.user.email },
       },
-      "email role"
+      "name email role"
     );
 
     res.json(users);
@@ -207,19 +208,23 @@ export const addPhone = async (req, res) => {
     const { phone } = req.body;
     const userId = req.user.id;
 
-    const user = await User.findOne(userId);
-    if (!user) {
-      res.status(404).json({ message: "User not found." });
+    const bindPhone = await User.findOneAndUpdate(
+      { _id: userId },
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!bindPhone) {
+      return res
+        .status(404)
+        .json({ message: "Phone number not updated or user not found." });
     }
 
-    user.phone = phone;
-    await user.save();
-
-    res
-      .status(200)
-      .json({ message: "User successfully bind phone number to the account." });
+    res.status(200).json({
+      message: "User successfully bound phone number to the account.",
+    });
   } catch (error) {
-    console.log(error);
+    console.error("Error in addPhone:", error);
     res.status(500).json({ message: "Failed to add phone number.", error });
   }
 };
@@ -227,35 +232,32 @@ export const addPhone = async (req, res) => {
 // Update email
 export const updateEmail = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, confirmEmail } = req.body;
     const userId = req.user.id;
 
-    // const user = await User.findOne(userId);
-    // if(!user){
-    //   res.status(404).json({message: "User not found."})
-    // }
+    if (email !== confirmEmail) {
+      return res
+        .status(400)
+        .json({ error: "New email and confirm email do not match" });
+    }
 
     const updatedEmail = await User.findOneAndUpdate(
-      {
-        userId,
-      },
-      {
-        $set: {
-          email,
-        },
-      },
-      {
-        new: true,
-      }
+      { _id: userId },
+      { $set: { email } },
+      { new: true }
     );
 
     if (!updatedEmail) {
-      res.status(404).json({ message: "Email not updated or user not found." });
+      return res
+        .status(404)
+        .json({ message: "Email not updated or user not found." });
     }
 
-    res.status(200).json({ message: "Email successfully updated." });
+    res
+      .status(200)
+      .json({ message: "Email successfully updated.", user: updatedEmail });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Failed to update email." });
+    console.error("Error in updateEmail:", error);
+    res.status(500).json({ message: "Failed to update email.", error });
   }
 };

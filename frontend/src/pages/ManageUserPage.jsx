@@ -1,12 +1,15 @@
-import React from 'react'
-import ManageUser from '../components/ManageUser'
+import React from "react";
+import UserActions from "../components/ManageUser";
+import { useOutletContext } from "react-router-dom";
 
 const ManageUserPage = () => {
+  const { closeSidebar } = useOutletContext();
+
   return (
     <>
-      <ManageUser />
+      <UserActions closeSidebar={closeSidebar} />
     </>
-  )
-}
+  );
+};
 
-export default ManageUserPage
+export default ManageUserPage;

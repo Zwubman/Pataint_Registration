@@ -12,9 +12,9 @@ import ServicePage from "./pages/ServicePage";
 import ContactPage from "./pages/ContactPage";
 import ManageAccountPage from "./pages/MyAccountPage";
 import AddUserPage from "./pages/AddUserPage";
+import ViewAllUsersPage from "./pages/ViewAllUsersPage";
 import ManageUserPage from "./pages/ManageUserPage";
 import NoServicePage from "./pages/NoServicePage";
-import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
 import DeleteUserPage from "./pages/DeleteUserPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
@@ -31,13 +31,13 @@ const router = createBrowserRouter(
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/my-account" element={<ManageAccountPage />} />
       <Route path="/add-user" element={<AddUserPage />} />
+      <Route path="/view-all-users" element={<ViewAllUsersPage />} />
       <Route path="/delete-user" element={<DeleteUserPage />} />
       <Route path="/manage-user" element={<ManageUserPage />} />
       <Route path="/change-password" element={<ChangePasswordPage />} />
       <Route path="/add-phone" element={<AddPhonePage />} />
       <Route path="/update-email" element={<UpdateEmailPage />} />
       <Route path="/register-procedure" element={<RegisterProcedurePage />} />
-      <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LogInPage />} />
       <Route path="*" element={<NoServicePage />} />
     </Route>

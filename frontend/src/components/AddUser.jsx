@@ -1,97 +1,145 @@
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash, FaUserPlus } from "react-icons/fa"; // Import necessary icons
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { registerUser } from "../services/api";
 
 const AddUser = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
+    role: "",
   });
-
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simulate adding user (replace with your actual logic)
-    console.log("User Added:", formData);
-    toast.success(`User with email "${formData.email}" has been successfully added.`); // Success notification
-
-    // Clear the form after submission
-    setFormData({ email: "", password: "" });
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword); // Toggle visibility state
+    try {
+      await registerUser(formData);
+      toast.success("User registered successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        role: "",
+      });
+      setTimeout(() => {
+        navigate("/view-all-users");
+      }, 2000);
+    } catch (error) {
+      toast.error(error.response?.data?.error || "Failed to register user");
+    }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen px-4">
-      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-center mb-6 text-blue-600">Add User</h2>
-        <form onSubmit={handleSubmit}>
-          {/* Email Field */}
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-blue-600 mb-6">
+          Add New User
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name */}
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm sm:text-base font-medium text-gray-700"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="Enter full name"
+              className="mt-1 block w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm sm:text-base font-medium text-gray-700"
+            >
               Email
             </label>
             <input
               type="email"
-              name="email"
               id="email"
+              name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 
-              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              placeholder="Enter email address"
+              className="mt-1 block w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          {/* Password Field with Eye Icon */}
-          <div className="mb-4 relative">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          {/* Password */}
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm sm:text-base font-medium text-gray-700"
+            >
               Password
             </label>
             <input
-              type={showPassword ? "text" : "password"} // Toggle input type
-              name="password"
+              type="password"
               id="password"
+              name="password"
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 
-              rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              placeholder="Enter password"
+              className="mt-1 block w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute top-10 right-3 text-gray-500 hover:text-gray-700"
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
           </div>
 
-          {/* Submit Button with Add User Icon */}
-          <div className="mt-6">
-            <button
-              type="submit"
-              className="w-full py-3 px-6 bg-blue-600 text-white 
-              rounded-md hover:bg-blue-700 transition duration-200 font-semibold flex items-center justify-center space-x-2"
+          {/* Role */}
+          <div>
+            <label
+              htmlFor="role"
+              className="block text-sm sm:text-base font-medium text-gray-700"
             >
-              <FaUserPlus className="text-xl" />
-              <span>Add User</span>
-            </button>
+              Role
+            </label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select Role</option>
+              <option value="SuperAdmin">SuperAdmin</option>
+              <option value="Admin">Admin</option>
+            </select>
           </div>
+
+          <button
+            type="submit"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm 
+            text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none 
+            focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Add User
+          </button>
         </form>
-
-        {/* Toastify Container */}
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </div>
   );
