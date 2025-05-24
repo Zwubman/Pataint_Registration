@@ -3,7 +3,7 @@ import { store } from "../redux/store";
 import { logout } from "../redux/features/authSlice";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080", // Backend server URL
+  baseURL: "https://pataint-registration.onrender.com", // Backend server URL
   headers: {
     "Content-Type": "application/json",
   },
